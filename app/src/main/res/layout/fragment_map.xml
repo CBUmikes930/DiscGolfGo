@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MapFragment">
+
+    <fragment
+        android:id="@+id/google_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/currentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/my_location"
+        app:backgroundTint="@color/BagAddBg"
+        app:tint="@color/BagAddImg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/placeNewMarker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/add"
+        app:backgroundTint="@color/BagAddBg"
+        app:tint="@color/BagAddImg"
+        app:layout_constraintBottom_toTopOf="@id/currentLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
