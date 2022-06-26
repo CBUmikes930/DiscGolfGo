@@ -66,14 +66,11 @@ public class BagFragment extends Fragment {
         adapter = new CategoryAdapter(mList);
         recyclerView.setAdapter(adapter);
 
-        view.findViewById(R.id.addToBagButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity main = (MainActivity) getContext();
-                main.getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,
-                        new AddToBagFragment()).commit();
-                main.findViewById(R.id.back_button).setVisibility(View.VISIBLE);
-            }
+        view.findViewById(R.id.addToBagButton).setOnClickListener(view1 -> {
+            MainActivity main = (MainActivity) getContext();
+            main.getSupportFragmentManager().beginTransaction().replace(R.id.flFragment,
+                    new AddToBagFragment(), "ADD_TO_BAG").commit();
+            main.findViewById(R.id.back_button).setVisibility(View.VISIBLE);
         });
 
         return view;
