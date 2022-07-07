@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreferenceCompat
+        app:key="is_metric"
+        app:title="@string/setting_metric"
+        app:icon="@drawable/distance" />
+
+    <ListPreference
+        app:key="map_style"
+        app:title="@string/setting_map_style"
+        app:entries="@array/map_styles_display"
+        app:entryValues="@array/map_styles"
+        app:icon="@drawable/map" />
+
+    <ListPreference
+        app:key="shot_type"
+        app:title="@string/setting_shot_type"
+        app:summary="@string/setting_shot_type_summary"
+        app:entries="@array/shot_types_display"
+        app:entryValues="@array/shot_types"
+        app:icon="@drawable/shot_type" />
+
+</PreferenceScreen>

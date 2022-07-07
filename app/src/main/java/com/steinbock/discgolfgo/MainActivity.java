@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity
     HomeFragment homeFragment = new HomeFragment();
     BagFragment bagFragment = new BagFragment();
     CourseFragment courseFragment = new CourseFragment();
+    SettingsFragment settingsFragment = new SettingsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.settings:
                 System.out.println("Settings");
+                getSupportFragmentManager().beginTransaction().replace(R.id.flFragment, settingsFragment, "SETTINGS").commit();
                 return true;
         }
         return false;

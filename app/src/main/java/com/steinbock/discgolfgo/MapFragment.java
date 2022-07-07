@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -106,7 +108,8 @@ public class MapFragment extends Fragment
     @Override
     public void onMapReady(@NonNull GoogleMap map) {
         googleMap = map;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        googleMap.setMapType(getMapType());
         googleMap.getUiSettings().setMapToolbarEnabled(false);
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
 
@@ -160,8 +163,8 @@ public class MapFragment extends Fragment
         // When the info window is held down, prompt to delete or not
         googleMap.setOnInfoWindowLongClickListener(marker -> {
             new AlertDialog.Builder(getContext())
-                    .setTitle("Delete Marker")
-                    .setMessage("Are you sure you want to delete this marker?")
+                    .setTitle(getContext().getString(R.string.delete_marker))
+                    .setMessage(getContext().getString(R.string.delete_marker_ext))
                     .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -286,7 +289,11 @@ public class MapFragment extends Fragment
         groundOverlayOptions.bearing(angle);
 
         // Get the label
-        groundOverlayOptions.image(getTextLabel(hole.getDistance() + "ft", R.color.orange, R.color.dark_blue, 36, 5, 10));
+
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String label = SP.getBoolean("is_metric", false) ? hole.getMetricDistance() + "m" : hole.getDistance() + "ft";
+
+        groundOverlayOptions.image(getTextLabel(label, R.color.orange, R.color.dark_blue, 36, 5, 10));
         // Set the anchor to be in the middle of the label
         groundOverlayOptions.anchor(0.5f, 0.5f);
         groundOverlayOptions.zIndex(2f);
@@ -360,5 +367,21 @@ public class MapFragment extends Fragment
         canvas.drawText(text, bm.getWidth() / 2f, bm.getHeight() - vPadding, paint);
 
         return BitmapDescriptorFactory.fromBitmap(bm);
+    }
+
+    private int getMapType() {
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getContext());
+        switch (SP.getString("map_style", "MAP_TYPE_HYBRID")) {
+            case "MAP_TYPE_NORMAL":
+                return GoogleMap.MAP_TYPE_NORMAL;
+            case "MAP_TYPE_SATELLITE":
+                return GoogleMap.MAP_TYPE_SATELLITE;
+            case "MAP_TYPE_TERRAIN":
+                return GoogleMap.MAP_TYPE_TERRAIN;
+            case "MAP_TYPE_HYBRID":
+                return GoogleMap.MAP_TYPE_HYBRID;
+            default:
+                return GoogleMap.MAP_TYPE_NONE;
+        }
     }
 }

@@ -3,7 +3,35 @@
     <string name="home">Home</string>
     <string name="bag">Bag</string>
     <string name="courses">Courses</string>
+    <string name="delete_marker">Delete Marker</string>
+    <string name="delete_marker_ext">Are you sure you want to delete this marker?</string>
+
+
     <string name="settings">Settings</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting_metric">Measure Distance in Metric</string>
+    <string name="setting_map_style">Map Style</string>
+    <string-array name="map_styles">
+        <item>MAP_TYPE_NORMAL</item>
+        <item>MAP_TYPE_SATELLITE</item>
+        <item>MAP_TYPE_TERRAIN</item>
+        <item>MAP_TYPE_HYBRID</item>
+    </string-array>
+    <string-array name="map_styles_display">
+        <item>Normal</item>
+        <item>Satellite</item>
+        <item>Terrain</item>
+        <item>Hybrid</item>
+    </string-array>
+    <string name="setting_shot_type">Shot Record Type</string>
+    <string name="setting_shot_type_summary">How do you want to record your shots on the map?</string>
+    <string-array name="shot_types">
+        <item>Basic</item>
+        <item>Advanced</item>
+        <item>Precise</item>
+    </string-array>
+    <string-array name="shot_types_display">
+        <item>Basic: Straight line from throw point to landing point\n</item>
+        <item>Advanced: Selectable line from throw point to landing point (Straight/Curve/S-Shape)\n</item>
+        <item>Precise: Draw a shape on the map from throw point to landing point</item>
+    </string-array>
 </resources>

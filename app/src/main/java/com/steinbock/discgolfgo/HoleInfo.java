@@ -76,8 +76,13 @@ public class HoleInfo {
         double a = Math.pow(Math.sin(dlat / 2), 2)
                 + Math.cos(lat1) * Math.cos(lat2)
                 * Math.pow(Math.sin(dlon / 2), 2);
+
         double r = 3956 * 5280;
         return (int) Math.round(2 * r * Math.asin(Math.sqrt(a)));
+    }
+
+    public int getMetricDistance() {
+        return (int) Math.round(getDistance() * 0.3048);
     }
 
     public float getBearing() {
