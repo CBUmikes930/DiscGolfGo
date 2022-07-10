@@ -6,6 +6,7 @@ public class DiscModel {
 
     private String name;
     private String desc;
+    private String type;
     private int speed;
     private int glide;
     private int turn;
@@ -14,19 +15,25 @@ public class DiscModel {
 
     private boolean isExpanded;
 
-    public DiscModel(String name, String desc) {
+    public DiscModel() {
+
+    }
+
+    public DiscModel(String name, String desc, String type) {
         this.name = name;
         this.desc = desc;
+        this.type = type;
         isExpanded = false;
     }
 
-    public DiscModel(String name, String desc, int speed, int glide, int turn, int fade) {
-        this(name, desc, speed, glide, turn, fade, null);
+    public DiscModel(String name, String desc, String type, int speed, int glide, int turn, int fade) {
+        this(name, desc, type, speed, glide, turn, fade, null);
     }
 
-    public DiscModel(String name, String desc, int speed, int glide, int turn, int fade, List<String> plastics) {
+    public DiscModel(String name, String desc, String type, int speed, int glide, int turn, int fade, List<String> plastics) {
         this.name = name;
         this.desc = desc;
+        this.type = type;
         this.speed = speed;
         this.glide = glide;
         this.turn = turn;
@@ -49,6 +56,14 @@ public class DiscModel {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getSpeed() {

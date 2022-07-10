@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "149737011545",
+    "project_id": "discgolfgo",
+    "storage_bucket": "discgolfgo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:149737011545:android:9ef9ba728908b10e5c3448",
+        "android_client_info": {
+          "package_name": "com.steinbock.discgolfgo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "149737011545-egl6inv1crcjtbtdojlsmj0jplunnfqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVTZw-g-ieOX_g0u4yBoLh7uLZOLg0oJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "149737011545-egl6inv1crcjtbtdojlsmj0jplunnfqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

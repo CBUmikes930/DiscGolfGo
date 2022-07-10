@@ -38,6 +38,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         CategoryModel model = mList.get(position);
+        if (model == null)
+            return;
+
         holder.textView.setText(model.getCategory());
 
         boolean isExpanded = model.isExpanded();

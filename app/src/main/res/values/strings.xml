@@ -22,6 +22,7 @@
         <item>Terrain</item>
         <item>Hybrid</item>
     </string-array>
+    <string name="setting_zoom_level">Default Map Zoom Level</string>
     <string name="setting_shot_type">Shot Record Type</string>
     <string name="setting_shot_type_summary">How do you want to record your shots on the map?</string>
     <string-array name="shot_types">

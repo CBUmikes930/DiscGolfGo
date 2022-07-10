@@ -61,6 +61,8 @@ public class MapFragment extends Fragment
     boolean updateLocation;
     private static final int REQUEST_CODE = 101;
 
+    float defaultZoom;
+
     public MapFragment() {
         // Required empty public constructor
     }
@@ -80,6 +82,8 @@ public class MapFragment extends Fragment
 
         SupportMapFragment supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.google_map);
         supportMapFragment.getMapAsync(this);
+
+        defaultZoom = PreferenceManager.getDefaultSharedPreferences(getContext()).getInt("zoom_level", 90) / 5f;
 
         return view;
     }
@@ -125,20 +129,20 @@ public class MapFragment extends Fragment
         // When the map is clicked, add a new hole marker and move camera to the marker
         googleMap.setOnMapClickListener(latLng -> {
             addHoleMarker(googleMap, latLng, latLng.latitude + " : " + latLng.longitude);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, defaultZoom));
         });
 
         // When the button is clicked, animate camera to the current position of the user
         this.getView().findViewById(R.id.currentLocation).setOnClickListener(view -> {
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(currentLocation.getLatitude(),
-                            currentLocation.getLongitude()), 20));
+                            currentLocation.getLongitude()), defaultZoom));
         });
 
         this.getView().findViewById(R.id.placeNewMarker).setOnClickListener(view -> {
             LatLng latLng = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
             addHoleMarker(googleMap, latLng, latLng.latitude + " : " + latLng.longitude);
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, defaultZoom));
             // ((MainActivity) getContext()).dbHandler.addNewHole(new HoleInfo(latLng, latLng, 5, 4));
         });
 
@@ -153,7 +157,7 @@ public class MapFragment extends Fragment
                 // Otherwise, mark the marker as the current marker
                 curMarkerID = marker.getId();
                 // Zoom into the selected marker
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 20));
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), defaultZoom));
                 // Show the info window
                 marker.showInfoWindow();
             }
@@ -204,7 +208,7 @@ public class MapFragment extends Fragment
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(loc -> {
             //curLocMarker = addMarkerAtLocation(loc, googleMap);
             googleMap.moveCamera(CameraUpdateFactory
-                    .newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), 20));
+                    .newLatLngZoom(new LatLng(loc.getLatitude(), loc.getLongitude()), defaultZoom));
             currentLocation = loc;
         });
 
